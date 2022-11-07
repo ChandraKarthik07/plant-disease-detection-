@@ -1,0 +1,208 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Aashrut R. Vaghani">
+        <meta name="description" content="This web app is used to identify the diseases in the crops and also suggests possible cure for them. This app uses Deep Learning Algorithms to predict the diseases in your crops. It implements various deep learning libraries to build Robust and Efficient Neural Network which can provide you Fast and Accurate Results.">
+        <meta property="og:image" content="{{ url_for('static', filename='Agent-Crop-Icon.png') }}">
+        <meta property="og:description" content="this web app is used to identify the diseases in the crops and also suggests possible cure for them. This app uses Deep Learning Algorithms to predict the diseases in your crops. It implements various deep learning libraries to build Robust and Efficient Neural Network which can provide you Fast and Accurate Results.">
+        <meta property="og:title" content="Crop disease detection system">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap" rel="stylesheet">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='Agent-Crop-Icon.png') }}">
+        <title>{% block title %} {% endblock %}</title>
+    </head>
+    <body>
+        <header class="navbar navbar-expand-md navbar-dark nav-color fixed-top">
+            <nav class="container-fluid flex-wrap flex-md-nowrap">
+                <a class="navbar-brand p-1 me-2" href="/">
+                    <img src="{{ url_for('static', filename='vignan.png') }}" width="40" height="40" class="d-inline-block align-text-center" alt="">
+                </a>
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse pt-2 py-md-0" id="bdNavbar">
+                    <ul class="navbar-nav flex-grow flex-wrap bd-navbar-nav">
+                        <li class="nav-item col-6 col-md-auto"><a class="nav-link p-2" href="/">Home</a></li>
+                        <li class="nav-item col-6 col-md-auto"><a class="nav-link p-2" href="#features">Features</a></li>
+                        
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <main class="flex-shrink-0">
+
+            {% block content %}{% endblock %}
+
+            <div id="features" >
+                <div class="container px-4 px-md-3 pt-5">
+                    <div class="row align-items-lg-center align-items-md-center">
+                        <div class="col-9 mx-auto col-md-6 col-lg-5">
+                            <img src="{{ url_for('static', filename='neural-brain.png') }}" class="img-fluid" alt="Features" width="400" height="400" >
+                        </div>
+                        <div class="col pt-4" style="color:white"> 
+                            <h2 style="color:white" >Features</h2>
+                            <p>This web app uses Deep Learning Algorithms to predict the diseases in your crops. It implements various deep learning libraries to build Robust and Efficient Neural Network which can provide you Fast and Accurate Results.</p>
+                            <h4>Technology Stack of this project:</h4>
+                            <ul>
+                                <li>python</li>
+                                <li>HTML, CSS, JavaScript</li>
+                                <li>Flask</li>
+                                <li>TensorFlow, Keras</li>
+                                <li>Pandas, Numpy, Scipy</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="container" style="color:white id="crops-list">
+                    <h5>This system currently supports the following Crops and their diseases:</h5>
+                </div>
+                <br>
+                <div class="container custom-bg-color rounded" style="padding-top: 12px; padding-bottom: 12px;">
+                    <nav>
+                        <div class="nav nav-tabs crops-list-tab" style="border: none; padding-bottom: 12px;" id="nav-tab" role="tablist">
+                            <button class="nav-link crops-list-tab active rounded" id="nav-apple-tab" data-bs-toggle="tab" data-bs-target="#nav-apple" type="button" role="tab" aria-controls="nav-apple" aria-selected="true">Apple</button>
+                            <button class="nav-link crops-list-tab rounded" id="nav-bell-pepper-tab" data-bs-toggle="tab" data-bs-target="#nav-bell-pepper" type="button" role="tab" aria-controls="nav-bell-pepper" aria-selected="false">Bell Pepper</button>
+                            <button class="nav-link crops-list-tab rounded" id="nav-blueberry-tab" data-bs-toggle="tab" data-bs-target="#nav-blueberry" type="button" role="tab" aria-controls="nav-blueberry" aria-selected="false">Blueberry</button>
+                            <button class="nav-link crops-list-tab rounded" id="nav-cherry-tab" data-bs-toggle="tab" data-bs-target="#nav-cherry" type="button" role="tab" aria-controls="nav-cherry" aria-selected="false">Cherry</button>
+                            <button class="nav-link crops-list-tab rounded" id="nav-corn-maize-tab" data-bs-toggle="tab" data-bs-target="#nav-corn-maize" type="button" role="tab" aria-controls="nav-corn-maize" aria-selected="false">Corn (Maize)</button>
+                            <button class="nav-link crops-list-tab rounded" id="nav-grape-tab" data-bs-toggle="tab" data-bs-target="#nav-grape" type="button" role="tab" aria-controls="nav-grape" aria-selected="false">Grape</button>
+                            <button class="nav-link crops-list-tab rounded" id="nav-orange-tab" data-bs-toggle="tab" data-bs-target="#nav-orange" type="button" role="tab" aria-controls="nav-orange" aria-selected="false">Orange</button>
+                            <button class="nav-link crops-list-tab rounded" id="nav-peach-tab" data-bs-toggle="tab" data-bs-target="#nav-peach" type="button" role="tab" aria-controls="nav-peach" aria-selected="false">Peach</button>
+                            <button class="nav-link crops-list-tab rounded" id="nav-potato-tab" data-bs-toggle="tab" data-bs-target="#nav-potato" type="button" role="tab" aria-controls="nav-potato" aria-selected="false">Potato</button>
+                            <button class="nav-link crops-list-tab rounded" id="nav-raspberry-tab" data-bs-toggle="tab" data-bs-target="#nav-raspberry" type="button" role="tab" aria-controls="nav-raspberry" aria-selected="false">Raspberry</button>
+                            <button class="nav-link crops-list-tab rounded" id="nav-rice-tab" data-bs-toggle="tab" data-bs-target="#nav-rice" type="button" role="tab" aria-controls="nav-rice" aria-selected="false">Rice</button>
+                            <button class="nav-link crops-list-tab rounded" id="nav-soybean-tab" data-bs-toggle="tab" data-bs-target="#nav-soybean" type="button" role="tab" aria-controls="nav-soybean" aria-selected="false">Soybean</button>
+                            <button class="nav-link crops-list-tab rounded" id="nav-squash-tab" data-bs-toggle="tab" data-bs-target="#nav-squash" type="button" role="tab" aria-controls="nav-squash" aria-selected="false">Squash</button>
+                            <button class="nav-link crops-list-tab rounded" id="nav-strawberry-tab" data-bs-toggle="tab" data-bs-target="#nav-strawberry" type="button" role="tab" aria-controls="nav-strawberry" aria-selected="false">Strawberry</button>
+                            <button class="nav-link crops-list-tab rounded" id="nav-tomato-tab" data-bs-toggle="tab" data-bs-target="#nav-tomato" type="button" role="tab" aria-controls="nav-tomato" aria-selected="false">Tomato</button>
+                        </div>
+                    </nav>
+                    <div class="tab-content custom-bg-color-2 rounded" style="padding-bottom: 5px; padding-top: 17px;"style="color:white id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-apple" role="tabpanel" aria-labelledby="nav-apple-tab">
+                            <ul>
+                                <li>Apple Scab</li>
+                                <li>Black Rot</li>
+                                <li>Cedar Rust</li>
+                                <li>Healthy</li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="nav-bell-pepper" style="color:white role="tabpanel" aria-labelledby="nav-bell-pepper-tab">
+                            <ul>
+                                <li>Bacterial Spot</li>
+                                <li>Healthy</li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="nav-blueberry" role="tabpanel" aria-labelledby="nav-blueberry-tab">
+                            <ul>
+                                <li>Healthy</li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="nav-cherry" role="tabpanel" aria-labelledby="nav-cherry-tab">
+                            <ul>
+                                <li>Powdery Mildew</li>
+                                <li>Healthy</li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="nav-corn-maize" role="tabpanel" aria-labelledby="nav-corn-maize-tab">
+                            <ul>
+                                <li>Grey Leaf Spot</li>
+                                <li>Common Rust of Maize</li>
+                                <li>Northern Leaf Blight</li>
+                                <li>Healthy</li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="nav-grape" role="tabpanel" aria-labelledby="nav-grape-tab">
+                            <ul>
+                                <li>Black Rot</li>
+                                <li>Black Measles (Esca)</li>
+                                <li>Leaf Blight (Isariopsis Leaf Spot)</li>
+                                <li>Healthy</li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="nav-orange" role="tabpanel" aria-labelledby="nav-orange-tab">
+                            <ul>
+                                <li>Huanglongbing (Citrus Greening)</li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="nav-peach" role="tabpanel" aria-labelledby="nav-peach-tab">
+                            <ul>
+                                <li>Bacterial spot</li>
+                                <li>Healthy</li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="nav-potato" role="tabpanel" aria-labelledby="nav-potato-tab">
+                            <ul>
+                                <li>Early Blight</li>
+                                <li>Late Blight</li>
+                                <li>Healthy</li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="nav-raspberry" role="tabpanel" aria-labelledby="nav-raspberry-tab">
+                            <ul>
+                                <li>Healthy</li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="nav-rice" role="tabpanel" aria-labelledby="nav-rice-tab">
+                            <ul>
+                                <li>Brown Spot</li>
+                                <li>Hispa</li>
+                                <li>Leaf Blast</li>
+                                <li>Healthy</li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="nav-soybean" role="tabpanel" aria-labelledby="nav-soybean-tab">
+                            <ul>
+                                <li>Healthy</li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="nav-squash" role="tabpanel" aria-labelledby="nav-squash-tab">
+                            <ul>
+                                <li>Powdery Mildew</li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="nav-strawberry" role="tabpanel" aria-labelledby="nav-strawberry-tab">
+                            <ul>
+                                <li>Leaf Scorch</li>
+                                <li>Healthy</li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="nav-tomato" role="tabpanel" aria-labelledby="nav-tomato-tab">
+                            <ul>
+                                <li>Bacterial Spot</li>
+                                <li>Early Blight</li>
+                                <li>Late Blight</li>
+                                <li>Leaf Mold</li>
+                                <li>Septoria Leaf Spot</li>
+                                <li>Spider Mites (Two-spotted Spider Mite)</li>
+                                <li>Target Spot</li>
+                                <li>Yellow Leaf Curl Virus</li>
+                                <li>Mosaic Virus</li>
+                                <li>fasalthy</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+
+   
+            <br>
+        </main>
+        <footer class="nav-color mt-auto text-center footer py-3 mb-0">
+            <div class="container" >
+                <p class="mb-0" style="color:beige;" > </br> Made By Team High Voltage</p>
+            </div>
+        </footer>
+        <!-- Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    </body>
+</html>

@@ -1,0 +1,42 @@
+{% extends '/base.html' %}
+{% block title %} Crop disease detection system: Home {% endblock %}
+{% block content %}
+	{% with messages = get_flashed_messages() %}  
+		{% if messages %}  
+			{% for message in messages %}
+				<div class="alert alert-warning text-center" role="alert" style="padding-top: 64px;">
+					<p class="mb-0 mt-3">{{ message }}</p>
+				</div>
+			{% endfor %}  
+		{% endif %}  
+	{% endwith %}
+	<div class="alert alert-warning text-center" role="alert" id="alert"></div>
+	<div class="container px-4 px-md-3">
+		<div class="row align-items-lg-center align-items-md-center">
+			<div class="col-9 mx-auto col-md-6 order-md-4 col-lg-5">
+				<img src="{{ url_for('static', filename='l1.png') }}" alt="Agent Crop Logo" height="500" width="500" class="img-fluid">
+			</div>
+			<div class="col justify-content-center pt-4">
+				<h1 class="mb-3 custom-font">Get Instant & Accurate Crop Disease Detection</h1>
+				<div class="mb-0" style="max-width: 300px;">
+					<label for="files" class="form-label">Upload Your Images Here: </label>
+					<input class="form-control" type="file" name="files" accept=".jpg, .png, .jpeg, image/jpeg, image/png" id="files" multiple="true" required>
+				</div>
+				<form action = "/" method = "POST" enctype = "multipart/form-data">
+					<div>
+						<input type="file" name="hiddenfiles" id="hiddenfiles" multiple hidden>
+						<div class="pt-2">
+							<p>Note: Maximum Total file size limit is 50 MB. Only PNG, JPG/JPEG files are allowed. Your Uploaded Images automatically get deleted after 1 hour.</p>
+							<p><a href="#crops-list" style="color: white;">List of currently supported crops</a></p>
+						</div>
+					</div>
+					<div>
+						<button class="btn btn-light btn-lg" type="submit" id="submit" onclick="return submit_form();">Predict Now</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div id="image_preview" class="row mt-3 justify-content-center"></div>
+	</div>
+	<script src="{{ url_for('static', filename='main.js') }}" defer></script>
+{% endblock %}

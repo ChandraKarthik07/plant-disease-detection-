@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %} Agent Crop: Show Prediction {% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row mt-5 justify-content-center">
+        {% for image, details in predictions.items() %}
+            <div class="card custom-bg-color card-custom mx-2 mb-3">
+                <img src="{{ folder+'/'+image }}" class="card-img-top mx-auto img-fluid" alt="Crop Image: {{ image }}" style="padding-top: 12px; max-height:250px; object-fit: cover;">
+                <div class="card-body">
+                    <p class="card-text"><strong>Image filename:</strong><br>{{ image }}</p>
+                    <p class="card-text"><strong>Predicted disease:</strong><br>{{ details["prediction"] }}</p>
+                    <p class="card-text"><strong>Description:</strong><br>{{ details["description"] }}</p>
+                    <p class="card-text"><strong>Identification/Symptoms:</strong><br>{{ details["symptoms"] }}</p>
+                    {% if "Healthy" in details["prediction"] %}
+                        <p class="card-text"><strong>Disease Management/Treatment:</strong><br>{{ details["source"] }}</p>
+                    {% else %}
+                        <p class="card-text"><strong>Disease Management/Treatment:</strong><br>For more information, visit the <a href='{{ details["source"] }}' target="_blank" style="color: white;">source</a>.</p>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+    <div class="container text-center">
+        <a href="/" class="btn btn-light btn-lg">Return to Home Page</a>
+        <p class="pt-2">Note: Your Uploaded Images automatically get deleted after 1 hour.</p>
+    </div>
+{% endblock %}
