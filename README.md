@@ -1,2 +1,2 @@
 # plant-disease-detection-
---- incomplete (deployment on server)--
+--- incomplete (server deployment)--
