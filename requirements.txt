@@ -7,3 +7,4 @@ scipy
 pillow
 requests
 Flask-APScheduler
+uvicorn
